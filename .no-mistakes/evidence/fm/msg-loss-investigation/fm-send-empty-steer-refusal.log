@@ -1,0 +1,14 @@
+$ bash tests/fm-send-inbox.test.sh   (target commit 4b54305, fix present)
+...
+ok - fm-send inbox: metadata lock contention fails bounded without enqueue
+ok - fm-send inbox: an unwritable record is a loud local failure that leaves no false expectation
+ok - fm-send: an empty or whitespace-only text steer refuses before marking, recording, or typing
+
+--- Regression check: same test file run against pre-fix bin/fm-send.sh (base commit c191eac) ---
+$ git show c191eacd36a9a44db0fb1888c67fe3dbfe534919:bin/fm-send.sh > bin/fm-send.sh
+$ bash tests/fm-send-inbox.test.sh
+...
+ok - fm-send inbox: an unwritable record is a loud local failure that leaves no false expectation
+not ok - an empty secondmate steer should refuse
+
+(bin/fm-send.sh restored to target version immediately after; worktree left clean)
